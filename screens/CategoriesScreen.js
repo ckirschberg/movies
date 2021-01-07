@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Button, FlatList, TouchableOpacity} from 'react-
 import { CATEGORIES, Categories } from '../data/dummy-data';
 
 
-const CategoriesScreen = props => {
+const CategoriesScreen = props  => {
     
     const renderGridItem = (itemData) =>  {
         return <TouchableOpacity style={styles.gridItem} onPress={() => {

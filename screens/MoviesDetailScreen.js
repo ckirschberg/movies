@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
-const MoviesDetailsScreen = props => {
+function MoviesDetailsScreen({ route, navigation }) {
+    const { movieId } = route.params;
+    console.log(movieId);
     return (
         <View style={styles.screen}>
             <Text>The movies details screen</Text>

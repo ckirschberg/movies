@@ -34,8 +34,10 @@ function StackNavigator() {
     }}
   />
   <Stack.Screen name="CategoryMovies" component={CategoryMoviesScreen} 
-  options={({ route }) => ({ title: route.params.name, catId: route.params.catId })}/>
-  <Stack.Screen name="MoviesDetail" component={MoviesDetailScreen} />
+    options={({ route }) => ({ title: route.params.name, catId: route.params.catId })}/>
+  
+  <Stack.Screen name="MoviesDetail" component={MoviesDetailScreen} 
+    options={({ route }) => ({ movieId: route.params.movieId })}/>
   </Stack.Navigator>
   );
 };
