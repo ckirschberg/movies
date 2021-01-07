@@ -1,16 +1,22 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 
 const MoviesDetailsScreen = props => {
     return (
         <View style={styles.screen}>
             <Text>The movies details screen</Text>
+            <Button title="Go Back" onPress={
+                () => props.navigation.goBack()}/>
+            
+            <Button title="Go back to start" onPress={
+                () => props.navigation.popToTop()}/>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     screen: {
+        backgroundColor: '#fff',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
