@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 import { CATEGORIES, MOVIES } from '../data/dummy-data';
 import MovieItem from '../components/movieItem'
 
+import { useSelector } from 'react-redux'; 
+
 function CategoriesMoviesScreen({ route, navigation }) {
     // const CategoriesMoviesScreen = (route, navigation) => {
 // const CategoriesMoviesScreen = (props) => {
@@ -13,7 +15,11 @@ function CategoriesMoviesScreen({ route, navigation }) {
     console.log(navigation);
 
     // const selectedCategory = CATEGORIES.find(cat => cat.id === catId);
-    const selectedMovies = MOVIES.filter(movie => 
+
+    // Reading from the Redux store
+    const availableMovies = useSelector(state => state.movies.filteredMovies);
+
+    const selectedMovies = availableMovies.filter(movie => 
         movie.categoryIds.indexOf(catId) >= 0);
 
     return (

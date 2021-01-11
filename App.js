@@ -8,6 +8,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import { createStore, combineReducers } from 'redux';
+import moviesReducer from './store/reducers/movies';
+import { Provider } from 'react-redux';
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import CategoriesScreen from './screens/CategoriesScreen';
@@ -15,7 +19,13 @@ import CategoryMoviesScreen from './screens/CategoryMoviesScreen';
 import MoviesDetailScreen from './screens/MoviesDetailScreen';
 import FiltersScreen from './screens/FiltersScreen';
 import FavoritesScreen from './screens/FavoriesScreen';
+import AddMovieScreen from './screens/AddMovieScreen';
 
+const rootReducer = combineReducers({
+  movies: moviesReducer
+});
+
+const store = createStore(rootReducer);
 
 
 function StackNavigator() {
@@ -69,7 +79,7 @@ function TabNavigator() {
         }}
       >
         <Tab.Screen name="Home" component={StackNavigator} />
-        <Tab.Screen name="Favorites" component={FavoritesScreen} />
+        <Tab.Screen name="Favorites" component={FavoritesScreen}/>
       </Tab.Navigator>
   );
 }
@@ -79,12 +89,15 @@ export default function App() {
   const Drawer = createDrawerNavigator();
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator>
         <Drawer.Screen name="Home" component={TabNavigator} />
         <Drawer.Screen name="Filters" component={FiltersScreen} />
+        <Drawer.Screen name="AddMovie" component={AddMovieScreen}/>
       </Drawer.Navigator>
     </NavigationContainer>
+    </Provider>
   );
   
 }
